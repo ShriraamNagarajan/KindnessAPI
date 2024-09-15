@@ -1,0 +1,6 @@
+@KindnessAPI_HostAddress = http://localhost:5198
+
+GET {{KindnessAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
