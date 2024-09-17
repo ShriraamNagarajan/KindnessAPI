@@ -66,3 +66,5 @@ By default, the API will be available at https://localhost:7242 or http://localh
 **API Documentation**
 
 Once the project is running, you can refer to the  <mark>WIKI Page</mark> full API Documentation for details on available endpoints, authentication, and more.
+
+Thank you for checking out this project!😊
