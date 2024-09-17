@@ -28,7 +28,7 @@ namespace KindnessAPI.Controllers.v1
             _response = new APIResponse();
 
         }
-        [HttpGet]
+        [HttpGet("acts")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<APIResponse>> GetActs(
     [FromQuery(Name = "difficulty")] string? difficulty,
@@ -80,7 +80,7 @@ namespace KindnessAPI.Controllers.v1
             return _response;
         }
 
-        [HttpGet("{id:int}", Name = "GetAct")]
+        [HttpGet("act", Name ="GetAct")]
         [ResponseCache(Duration = 30)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -151,7 +151,7 @@ namespace KindnessAPI.Controllers.v1
 
 
 
-        [HttpDelete("{id:int}", Name = "DeleteAct")]
+        [HttpDelete("act")]
         [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -191,7 +191,7 @@ namespace KindnessAPI.Controllers.v1
 
         }
 
-        [HttpPost]
+        [HttpPost("suggest-act", Name = "CreateAct")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -224,7 +224,7 @@ namespace KindnessAPI.Controllers.v1
             return _response;
 
         }
-        [HttpPut("{id:int}", Name = "UpdateAct")]
+        [HttpPut("act", Name ="UpdateAct")]
         [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
