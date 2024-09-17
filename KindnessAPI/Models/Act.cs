@@ -30,8 +30,10 @@ namespace KindnessAPI.Models
         public string ImpactType { get; set; }
 
         [Required]
-        [StringLength(50)]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+        [Required]
+        public DateTime UpdatedAt { get; set; }
 
 
     }

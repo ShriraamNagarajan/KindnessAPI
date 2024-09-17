@@ -4,6 +4,7 @@ using KindnessAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KindnessAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240916211449_AddApplicationUser")]
+    partial class AddApplicationUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,56 +73,56 @@ namespace KindnessAPI.Migrations
                         {
                             Id = 1,
                             Action = "Hold the door open for someone",
-                            CreatedAt = new DateTime(2024, 9, 16, 22, 14, 7, 111, DateTimeKind.Utc).AddTicks(6891),
+                            CreatedAt = new DateTime(2024, 9, 16, 21, 14, 48, 736, DateTimeKind.Utc).AddTicks(6351),
                             Difficulty = "Simple",
                             ImpactType = "Personal",
                             LocationType = "Local",
                             TimeRequired = "Quick",
-                            UpdatedAt = new DateTime(2024, 9, 16, 22, 14, 7, 111, DateTimeKind.Utc).AddTicks(6892)
+                            UpdatedAt = new DateTime(2024, 9, 16, 21, 14, 48, 736, DateTimeKind.Utc).AddTicks(6351)
                         },
                         new
                         {
                             Id = 2,
                             Action = "Donate to a local charity",
-                            CreatedAt = new DateTime(2024, 9, 16, 22, 14, 7, 111, DateTimeKind.Utc).AddTicks(6895),
+                            CreatedAt = new DateTime(2024, 9, 16, 21, 14, 48, 736, DateTimeKind.Utc).AddTicks(6354),
                             Difficulty = "Moderate",
                             ImpactType = "Community",
                             LocationType = "Local",
                             TimeRequired = "Medium",
-                            UpdatedAt = new DateTime(2024, 9, 16, 22, 14, 7, 111, DateTimeKind.Utc).AddTicks(6896)
+                            UpdatedAt = new DateTime(2024, 9, 16, 21, 14, 48, 736, DateTimeKind.Utc).AddTicks(6355)
                         },
                         new
                         {
                             Id = 3,
                             Action = "Plant a tree",
-                            CreatedAt = new DateTime(2024, 9, 16, 22, 14, 7, 111, DateTimeKind.Utc).AddTicks(6898),
+                            CreatedAt = new DateTime(2024, 9, 16, 21, 14, 48, 736, DateTimeKind.Utc).AddTicks(6357),
                             Difficulty = "Challenging",
                             ImpactType = "Environmental",
                             LocationType = "Local",
                             TimeRequired = "Long",
-                            UpdatedAt = new DateTime(2024, 9, 16, 22, 14, 7, 111, DateTimeKind.Utc).AddTicks(6899)
+                            UpdatedAt = new DateTime(2024, 9, 16, 21, 14, 48, 736, DateTimeKind.Utc).AddTicks(6357)
                         },
                         new
                         {
                             Id = 4,
                             Action = "Leave a positive review for a local business",
-                            CreatedAt = new DateTime(2024, 9, 16, 22, 14, 7, 111, DateTimeKind.Utc).AddTicks(6901),
+                            CreatedAt = new DateTime(2024, 9, 16, 21, 14, 48, 736, DateTimeKind.Utc).AddTicks(6359),
                             Difficulty = "Simple",
                             ImpactType = "Community",
                             LocationType = "Virtual",
                             TimeRequired = "Quick",
-                            UpdatedAt = new DateTime(2024, 9, 16, 22, 14, 7, 111, DateTimeKind.Utc).AddTicks(6902)
+                            UpdatedAt = new DateTime(2024, 9, 16, 21, 14, 48, 736, DateTimeKind.Utc).AddTicks(6360)
                         },
                         new
                         {
                             Id = 5,
                             Action = "Send a thank you note to a friend",
-                            CreatedAt = new DateTime(2024, 9, 16, 22, 14, 7, 111, DateTimeKind.Utc).AddTicks(6904),
+                            CreatedAt = new DateTime(2024, 9, 16, 21, 14, 48, 736, DateTimeKind.Utc).AddTicks(6362),
                             Difficulty = "Simple",
                             ImpactType = "Personal",
                             LocationType = "Virtual",
                             TimeRequired = "Quick",
-                            UpdatedAt = new DateTime(2024, 9, 16, 22, 14, 7, 111, DateTimeKind.Utc).AddTicks(6905)
+                            UpdatedAt = new DateTime(2024, 9, 16, 21, 14, 48, 736, DateTimeKind.Utc).AddTicks(6362)
                         });
                 });
 
@@ -192,37 +195,6 @@ namespace KindnessAPI.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("KindnessAPI.Models.RefreshToken", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("ExpiresAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsValid")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("JwtTokenId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Refresh_Token")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("RefreshTokens");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -248,22 +220,6 @@ namespace KindnessAPI.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "3206214c-93fb-4b5a-8f8e-119f04ffa4b8",
-                            ConcurrencyStamp = "3206214c-93fb-4b5a-8f8e-119f04ffa4b8",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "BC48D86B-C73B-4DF1-BDFF-02A85520BC1B",
-                            ConcurrencyStamp = "BC48D86B-C73B-4DF1-BDFF-02A85520BC1B",
-                            Name = "Customer",
-                            NormalizedName = "CUSTOMER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -1,15 +1,19 @@
 ﻿using KindnessAPI.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.EntityFrameworkCore;
 
 namespace KindnessAPI.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options)
         {
             
         }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<Act> Acts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,7 +30,8 @@ namespace KindnessAPI.Data
                     TimeRequired = "Quick",
                     LocationType = "Local",
                     ImpactType = "Personal",
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow
                 },
         new Act
         {
@@ -36,7 +41,8 @@ namespace KindnessAPI.Data
             TimeRequired = "Medium",
             LocationType = "Local",
             ImpactType = "Community",
-            CreatedAt = DateTime.UtcNow
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
         },
         new Act
         {
@@ -46,7 +52,8 @@ namespace KindnessAPI.Data
             TimeRequired = "Long",
             LocationType = "Local",
             ImpactType = "Environmental",
-            CreatedAt = DateTime.UtcNow
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
         },
         new Act
         {
@@ -56,7 +63,8 @@ namespace KindnessAPI.Data
             TimeRequired = "Quick",
             LocationType = "Virtual",
             ImpactType = "Community",
-            CreatedAt = DateTime.UtcNow
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
         },
         new Act
         {
@@ -66,11 +74,37 @@ namespace KindnessAPI.Data
             TimeRequired = "Quick",
             LocationType = "Virtual",
             ImpactType = "Personal",
-            CreatedAt = DateTime.UtcNow
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
         }
 
 
                 );
+
+
+            var adminRoleId = "3206214c-93fb-4b5a-8f8e-119f04ffa4b8";
+            var customerRoleId = "BC48D86B-C73B-4DF1-BDFF-02A85520BC1B";
+ 
+
+            var roles = new List<IdentityRole>
+            {
+                new IdentityRole
+                {
+                    Name= "Admin",
+                    NormalizedName = "ADMIN",
+                    Id = adminRoleId,
+                    ConcurrencyStamp = adminRoleId
+                },
+                new IdentityRole
+                {
+                    Name = "Customer",
+                    NormalizedName = "CUSTOMER",
+                    Id = customerRoleId,
+                    ConcurrencyStamp = customerRoleId
+                },
+            };
+
+            modelBuilder.Entity<IdentityRole>().HasData(roles);
 
         }
     }
